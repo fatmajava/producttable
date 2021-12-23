@@ -20,8 +20,10 @@
             <?php echo $_SESSION['USERNAME']?>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+             <?php if ($_SESSION['ROLE'] == 1) : ?>
+            <li><a class="dropdown-item" href="members.php?open=admin">Admin& Moderator</a></li>
+            <?php endif ?>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout.php">logout</a></li>
           </ul>

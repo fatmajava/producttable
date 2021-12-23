@@ -1,7 +1,5 @@
 <?php session_start();?>
-<?php include "config.php"?>
-<?php include "includes/header.php"?>
-<?php include "includes/navbar.php"?>
+
 
 
 <?php 
@@ -13,6 +11,10 @@ if(isset($_GET['action'])){
 }
 
 ?>
+<?php if(isset($_SESSION['ID'])):?>
+  <?php include "config.php"?>
+<?php include "includes/header.php"?>
+<?php include "includes/navbar.php"?>
 <?php if ($do == "index") : ?>
     <h1 class="text-center">All Products</h1>
     <?php
@@ -92,3 +94,6 @@ if(isset($_GET['action'])){
 
 
 <?php include "includes/footer.php"?>
+<?php else: ?>
+  <?php header("location:index.php")?>
+  <?php endif?>

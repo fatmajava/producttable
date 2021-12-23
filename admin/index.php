@@ -9,7 +9,7 @@
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $email = $_POST['adminemail'];
     $password = sha1($_POST['adminpass']);
-    $stmt = $con->prepare("SELECT * FROM `users` WHERE `email`=? AND `password`=? ");
+    $stmt = $con->prepare("SELECT * FROM `users` WHERE `email`=? AND `password`=? AND `role`!=2 ");
     $stmt->execute(array($email , $password));
     $count = $stmt->rowCount();
     $user = $stmt->fetch();
@@ -20,13 +20,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $_SESSION['ROLE'] =$user['role'];
         header("Location:dashboard.php");
     }else{
+      
         echo "sorry dont have permeiision";
     }
+     
 }
 
 ?>
+
 <?php include "includes/header.php"?>
+
   <body>
+  
       <div class="container-fluid">
           <h1 class="text-center">admin panel</h1>
   <form method="post" action="index.php">
@@ -43,6 +48,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>
+
   <?php include "includes/footer.php"?>
 
   </body>
